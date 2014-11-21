@@ -15,6 +15,9 @@ gwt-unitCache/
 war/WEB-INF/deploy/
 war/WEB-INF/classes/
 
+war/swrlgwt
+test-classes
+
 #compilation logs
 .gwt/
 
@@ -26,3 +29,5 @@ www-test/
 
 #old GWT (1.5) created this dir
 .gwt-tmp/
+.classpath
+.project

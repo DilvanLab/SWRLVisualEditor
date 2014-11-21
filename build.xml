@@ -1,0 +1,182 @@
+<?xml version="1.0" ?>
+
+<!--
+/*
+ * The contents of this file are subject to the Mozilla Public License
+ * Version 1.1 (the "License");  you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * http//www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
+ * the specific language governing rights and limitations under the License.
+ *
+ * The Original Code is OBO CONVERTER TAB.
+ *
+ * OBO CONVERTER TAB was developed by Dilvan Moreira at the SMI-Stanford University
+ * (http//www.smi.stanford.edu) at the Stanford University School of Medicine
+ *
+ * @author      Dilvan Moreira
+ * @version     1.0
+ * @since       1.0
+ */
+	-->
+
+<project name = "OBO Converter Tab" default = "dist" basedir = ".">
+
+	<property file="local.properties"/>
+
+	<property environment="env"/>
+	<property name="protege.home"       location = "${env.PROTEGE_HOME}"/>	
+	
+	<property name = "src"              location = "./src"/>  
+	<property name = "classes"          location = "./classes"/>  
+	<property name = "lib"              location = "./lib"/>  
+	<property name = "owl.path"         value    = "edu.stanford.smi.protegex.owl"/>
+	
+	<!--property name = "oboEdit.home" 		location = "${env.OBOEDIT_HOME}"/>
+	<property name = "oboEdit.jars" 		location = "${oboEdit.home}/runtime"/>
+	<property name = "oboEdit.extensions"	location = "${oboEdit.home}/extensions"/-->
+
+	<property name = "ontology.lib" 	location = "../ontology/lib/ontology.jar"/>
+	<property name = "plugin_dist" 		value = "org.dilvan.protege3.swrlfx"/>
+	<property name = "pluginJarName" 	value = "SWRLfx"/>
+
+
+	   <!-- 
+	     #  ********** Finding Protege Libraries. *************
+	     -->
+
+	   <target name="checkProtegeHome">
+	       <condition property="protege.home.set">
+	           <available file="${protege.home}/protege.jar" type="file"/>
+	       </condition>
+	   </target>
+
+	   <target name="useProtegeHome" depends="checkProtegeHome" if="protege.home.set">
+	       <echo message="Using Protege Home = ${protege.home} to find protege jars"/>
+	       <property name="protege.lib"     location="${protege.home}/protege.jar"/>
+	       <property name="protege.owl.lib" location="${protege.home}/plugins/${owl.path}/protege-owl.jar"/>
+	       <property name="jena.lib"        location="${protege.home}/plugins/${owl.path}/jena.jar"/>
+	   </target>
+	    
+
+	    <target name = "checkProtegeLibs" depends="useProtegeHome">
+	      <condition property="libs.found">
+	        <and>
+	          <available file="${protege.lib}"          type = "file"/>
+		      <available file="${protege.owl.lib}"      type = "file"/>
+		      <available file="${jena.lib}"             type = "file"/>
+	          <available file="${ontology.lib}"         type = "file"/>
+	        </and>
+	      </condition>
+	      <path id = "project.classpath">    
+	        <pathelement location = "${protege.lib}"/>
+	        <pathelement location = "${protege.owl.lib}"/>
+	        <pathelement location = "${jena.lib}"/>
+	        <pathelement location = "${ontology.lib}"/>
+	        <fileset dir="${lib}"/>
+	      </path>
+
+	    </target>
+
+	    <target name="checkProtegeLibsAndReport" depends="checkProtegeLibs"
+	            unless="libs.found">
+	      <echo message="Missing protege or gwt libraries.  See the readme.txt"/>
+	      <echo message="for the location of the gwt libraries and update the"/>
+	      <echo message="local.properties file to point to these locations."/>
+	      <echo message="You also need to set the PROTEGE_HOME environment variable to an"/>
+	      <echo message="protege installation directory where the"/>
+	      <echo message="appropriate plugins have been installed."/>
+	      <echo message="Use the -v option to ant to see what jars are missing."/>
+	      <fail message = "missing protege libraries"/>
+	    </target>	      
+
+	<!-- ********** Initialization and staging ************* -->
+
+	<target name = "init" depends = "checkProtegeLibs">
+		<mkdir dir = "${classes}"/>
+		<mkdir dir = "${classes}/resources"/>
+		<!--mkdir dir = "${plugins}"/-->
+		<mkdir dir = "${protege.home}/plugins/${plugin_dist}"/>
+	</target>
+
+	<!-- ********** Compilation and Packing ************* -->
+
+	<target name = "compile" depends = "init">
+		<javac srcdir = "${src}"
+			   destdir = "${classes}" 
+			   debug="${debug}" 
+			   includeAntRuntime="false" 
+			   deprecation = "${deprecation}">
+			<classpath refid = "project.classpath"/>
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<copy todir="classes/resources">
+			<fileset dir="etc/resources" />
+		</copy>
+		<!--	Protege plugin	-->
+		<jar jarfile="${lib}/${pluginJarName}.jar" basedir="${classes}" manifest="etc/meta-inf/manifest.mf" />
+
+		<!--	Obo-Edit plugin	-->
+
+	</target>
+
+	<!-- ********** Distribution ************* -->
+
+	<target name="protegeDist" depends="jar">
+		<copy file="${lib}/${pluginJarName}.jar" todir="${protege.home}/plugins/${plugin_dist}" />
+
+		<copy file="etc/plugin.properties" todir="${protege.home}/plugins/${plugin_dist}" />
+		<!--copy todir= "${protege.home}/plugins/${plugin_dist}">
+			<fileset dir="${oboEdit.jars}" includes="**/*.jar"/>
+		</copy-->
+		<copy file="${ontology.lib}" todir="${protege.home}/plugins/${plugin_dist}" />
+	</target>
+
+	<!--target name = "oboDist" depends = "jar">
+		<copy file = "${lib}/${pluginJarName}.jar"
+	      todir= "${oboEdit.extensions}" />
+
+		<copy file = "${lib}/${pluginJarName}.jar"
+	      todir= "./extensions" />
+		
+		<copy file="${protege.lib}"
+	      todir= "${oboEdit.extensions}" />
+		
+		<copy todir= "${oboEdit.extensions}">
+			<fileset dir="${protege.home}/plugins/${owl.path}" includes="**/*.jar"/>
+		</copy>
+		
+		<copy todir="classes/resources">
+			<fileset dir="etc/resources"/>
+		</copy>
+
+		<copy file="${ontology.lib}"
+	      todir= "${oboEdit.extensions}" />
+
+		<!-zip basedir = "${plugins}"
+	    includes = "${plugin_dist}/**"
+	    destfile = "${plugins}/${pluginJarName}.zip"/->
+	</target-->
+
+	<target name = "dist" depends = "protegeDist"> <!--, oboDist"> -->
+		<!--zip basedir = "${plugins}"
+	    includes = "${plugin_dist}/**"
+	    destfile = "${plugins}/${pluginJarName}.zip"/-->
+	</target>
+
+	<!-- ********** Clean ************* -->
+	
+	<target name = "clean">
+		<delete dir = "${classes}"/>
+		<delete dir = "${protege.home}/plugins/${plugin_dist}"/>
+
+		<!--delete>
+			<fileset dir="${oboEdit.home}/extensions" includes="**/*.jar"/>
+		</delete-->
+	</target>
+
+</project>

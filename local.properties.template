@@ -1,0 +1,16 @@
+
+#
+# The values put in here over ride the values in the build.xml file
+#
+
+#
+# The location of the Protege installation directory
+#
+#protegeHome=/Users/tredmond/Desktop/Protege_3.4_beta
+
+#
+# The directory containing ontology.jar
+# The sources for this jar can be compiled and built from 
+#   http://smi-protege/repos/protege/bio-annotation/ontology/trunk
+#
+#ontologyHome=../bio-ontology/lib
