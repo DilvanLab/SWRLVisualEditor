@@ -1,0 +1,111 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+	<ui:with field='res'
+		type='br.usp.icmc.dilvan.swrlEditor.client.resources.Resources' />
+
+	<g:DockLayoutPanel width="100%" height="100%">
+
+		<g:north size="40.0">
+			<g:HorizontalPanel spacing="5" width=""
+				verticalAlignment="ALIGN_MIDDLE">
+				<g:Label horizontalAlignment="ALIGN_CENTER" text="Composition"
+					styleName='{res.swrleditor.titleViews}' />
+			</g:HorizontalPanel>
+		</g:north>
+
+		<g:center>
+			<g:SplitLayoutPanel>
+				<g:west size="170.0">
+					<g:SimplePanel width="100%" height="100%" ui:field="pnlProperties">
+
+					</g:SimplePanel>
+				</g:west>
+				<g:center>
+					<g:DockLayoutPanel>
+
+						<g:north size="50">
+							<g:HorizontalPanel spacing="5"
+								verticalAlignment="ALIGN_MIDDLE">
+								<g:Image url='{res.edit.getURL}' width="24px" height="22px"
+									altText="New/Edit Rule" />
+
+								<g:Button text="Similar Rules" ui:field="btnSimilarRules" styleName='{res.swrleditor.allButton}'/>
+								<g:InlineHTML>
+									<b>Rule Name: </b>
+								</g:InlineHTML>
+								<g:TextBox ui:field="txtRuleName" width="269px" />
+								<g:Button ui:field="btnSave" text="Save" styleName='{res.swrleditor.allButton}'/>
+								<g:Button ui:field="btnCancel" text="Cancel" styleName='{res.swrleditor.allButton}'/>
+							</g:HorizontalPanel>
+						</g:north>
+						<g:center>
+
+							<g:SplitLayoutPanel width="100%" height="100%">
+								<g:center>
+									<g:TabLayoutPanel barHeight="25" barUnit="PX"
+										width="100%" height="100%" ui:field="tabsComposition">
+										<g:tab>
+											<g:header>Editor</g:header>
+											<g:SimplePanel ui:field="tabList">
+
+											</g:SimplePanel>
+										</g:tab>
+										<!-- <g:tab> <g:header>Text</g:header> <g:SimplePanel ui:field="tabText"> 
+											</g:SimplePanel> </g:tab> -->
+										<g:tab>
+											<g:header>SWRL</g:header>
+											<g:SimplePanel ui:field="tabSWRL">
+											</g:SimplePanel>
+										</g:tab>
+										<g:tab>
+											<g:header>Autism</g:header>
+											<g:SimplePanel ui:field="tabAutism" />
+										</g:tab>
+									</g:TabLayoutPanel>
+								</g:center>
+
+
+
+								<g:south size="120">
+									<g:TabLayoutPanel barHeight="25" barUnit="PX"
+										height="100%" ui:field="tabButton">
+										<g:tab>
+											<g:header>Problems</g:header>
+											<g:SimplePanel>
+												<g:ScrollPanel width="100%" height="100%">
+													<g:VerticalPanel width="100%" height="100%"
+														ui:field="pnlAddErrors" />
+												</g:ScrollPanel>
+											</g:SimplePanel>
+										</g:tab>
+										<g:tab>
+											<g:header>Suggest Terms</g:header>
+											<g:SimplePanel ui:field="pnlSuggestTerms">
+												<g:ScrollPanel width="100%" height="100%">
+													<g:VerticalPanel width="100%" height="100%"
+														ui:field="lstSuggestTerms" spacing="3" />
+												</g:ScrollPanel>
+											</g:SimplePanel>
+										</g:tab>
+									</g:TabLayoutPanel>
+								</g:south>
+
+							</g:SplitLayoutPanel>
+
+						</g:center>
+
+
+					</g:DockLayoutPanel>
+				</g:center>
+			</g:SplitLayoutPanel>
+		</g:center>
+	</g:DockLayoutPanel>
+
+
+
+
+
+
+</ui:UiBinder> 

@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+	<ui:with field='resources' type='br.usp.icmc.dilvan.swrlEditor.client.resources.Resources' />
+
+	<g:HTMLPanel width="100%" height="100%" ui:field="panelMain">
+		<g:HorizontalPanel styleName='{resources.swrleditor.popupTitle}' width="100%" spacing="5" ui:field="toolbar">
+			<g:Label text="List of similar rules" ui:field="lblTitle" styleName='{resources.swrleditor.labelUppercase}'/>
+			
+			<g:Cell horizontalAlignment="ALIGN_RIGHT">
+				<g:InlineLabel text="close" styleName='{resources.swrleditor.link}' ui:field="lblClose"/>
+			</g:Cell>
+		</g:HorizontalPanel>
+		<g:ScrollPanel width="100%" height="90%">
+			<g:VerticalPanel ui:field="listRules" spacing="5" width="100%" height="100%"/>
+		</g:ScrollPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

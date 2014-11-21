@@ -1,0 +1,15 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+	<ui:with field='resources' type='br.usp.icmc.dilvan.swrlEditor.client.resources.Resources' />
+
+	<g:HorizontalPanel spacing="3">
+		<g:HTML ui:field="htmlAtom"/>
+		<g:Label text="Add in antecedent" ui:field="lblAddAntecedent" styleName= '{resources.swrleditor.mlink}'/>
+		<g:Label text=" or " styleName='{resources.swrleditor.peq}'/>
+		<g:Label text="Add in consequent" ui:field="lblAddConsequent" styleName= '{resources.swrleditor.mlink}' />
+
+	</g:HorizontalPanel>
+
+</ui:UiBinder> 

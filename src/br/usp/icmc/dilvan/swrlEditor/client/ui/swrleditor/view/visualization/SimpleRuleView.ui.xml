@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+	<ui:with field='res'
+		type='br.usp.icmc.dilvan.swrlEditor.client.resources.Resources' />
+
+	<g:FlowPanel styleName='{res.swrleditor.panelBase_SimpleRuleView}'  width="100%">
+		<g:DisclosurePanel ui:field="panelContent" width="100%" open="true">
+			<g:header></g:header>
+			<g:FlowPanel width="97%" ui:field="contentRule" />
+		</g:DisclosurePanel>
+		<g:HorizontalPanel spacing="5" ui:field="panelButtons">
+
+			<g:Button text="Edit Rule" ui:field="btnEditRule" styleName='{res.swrleditor.allButton}'/>
+			<g:Button text="Duplicate and Edit" ui:field="btnDuplicateRule" styleName='{res.swrleditor.allButton}'/>
+			<g:Button text="Delete" ui:field="btnDeleteRule" styleName='{res.swrleditor.allButton}'/>
+			<g:Button text="Similar rules" ui:field="btnSimilarRule" styleName='{res.swrleditor.allButton}'/>
+
+		</g:HorizontalPanel>
+	</g:FlowPanel>
+</ui:UiBinder>
