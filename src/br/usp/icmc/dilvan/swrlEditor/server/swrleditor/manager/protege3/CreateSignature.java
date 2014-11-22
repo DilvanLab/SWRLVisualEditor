@@ -87,7 +87,6 @@ public class CreateSignature {
 		order = reorderVar(map); // Sort the Hashmap
 		reorderAtoms(cmap); // Sort the Atom list for each Hashmap element
 
-
 		while (!cmap.isEmpty()) {
 			if (!p.isEmpty()) {
 				root = p.get(0);
@@ -106,9 +105,7 @@ public class CreateSignature {
 				sig = "";
 				DFSJoin(root, cmap, head, false, false, bph,
 						aliases);
-
 			}
-
 			fsig += sig + "^";
 		}
 		fsig = fsig.substring(0, fsig.length() - 1);
@@ -116,7 +113,6 @@ public class CreateSignature {
 		signature = fsig;
 
 		return signature;
-
 	}
 
 	private void transAliases(List<Pair> aliases) {
@@ -148,10 +144,9 @@ public class CreateSignature {
 			sig += "@";
 		}
 
-		for (Iterator it = list.iterator(); it.hasNext();) {
-			arg = (Argument) it.next();
+		for (Object aList : list) {
+			arg = (Argument) aList;
 			atom = (SWRLAtom) bList.get(arg.value);
-
 
 			Rtype = arg.ruleType;
 			sig += Rtype;
@@ -160,15 +155,10 @@ public class CreateSignature {
 				argName2 = stringPruning(((((SWRLIndividualPropertyAtom) atom)
 						.getArgument2()).getBrowserText()));
 				if (map.containsKey(argName2)) {
-
 					sig += "#";
-
 					DFSJoin(argName2, map, bList, false, true,
 							bph, aliases);
-
-
 				}
-
 			} else if (Rtype == 4) {
 				argName2 = stringPruning(((((SWRLDatavaluedPropertyAtom) atom)
 						.getArgument2()).getBrowserText()));
@@ -177,10 +167,8 @@ public class CreateSignature {
 
 					DFSJoin(argName2, map, bList, false, true,
 							bph, aliases);
-
 				}
 			}
-
 		}
 		sig += ")";
 	}

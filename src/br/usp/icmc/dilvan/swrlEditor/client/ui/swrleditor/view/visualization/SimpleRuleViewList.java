@@ -9,7 +9,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-
 public class SimpleRuleViewList extends SimpleRuleView {
 
 	public SimpleRuleViewList(Rule rule, Presenter presenter, TYPE_VIEW typeView) {

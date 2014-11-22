@@ -22,8 +22,7 @@ public class NodeDecisionTreeRanking implements NodeDecisionTree {
 	
 	private List<String> rulesRelated;
 
-
-	/* Nodos filhos */
+	/* Children nodes */
 	private List<NodeDecisionTree> childNodes = new ArrayList<NodeDecisionTree>();
 
 

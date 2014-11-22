@@ -50,10 +50,8 @@ public class FilterViewImpl extends Composite implements FilterView{
 	@UiField CheckBox chkStartAtoms;
 	@UiField CheckBox chkMiddleAtoms;
 	@UiField CheckBox chkEndAtoms;
-
 	
 	@UiField Button btnSearch;
-
 	
 	private OntologyView ontologyView;
 	private Filter filter;
@@ -86,8 +84,7 @@ public class FilterViewImpl extends Composite implements FilterView{
 		txtAnd.setText(mountStringFilter(filter.getLstAnd()));
 		txtOr.setText(mountStringFilter(filter.getLstOr()));
 		txtNot.setText(mountStringFilter(filter.getLstNot()));
-		
-		
+
 		chkAntecedent.setValue(filter.isQueryAntecedent());
 		chkConsequent.setValue(filter.isQueryConsequent());
 		
@@ -134,8 +131,7 @@ public class FilterViewImpl extends Composite implements FilterView{
 		
 		if (value.contains(" "))
 			value = "\"" + value + "\"";
-		
-		
+
 		if (typeFilter == TYPE_FILTER.AND){
 			txtAnd.setText((txtAnd.getText()+" "+value).trim());
 		}else if (typeFilter == TYPE_FILTER.OR){
@@ -146,8 +142,6 @@ public class FilterViewImpl extends Composite implements FilterView{
 
 		mountHTMLFilter();
 	}
-
-	
 	
 	@UiHandler({"txtAnd", "txtOr", "txtNot"})
 	void onTextBoxKeyUp(KeyUpEvent event) {
@@ -177,9 +171,8 @@ public class FilterViewImpl extends Composite implements FilterView{
 			
 			String [] andSplit = text.substring(0, pos1).split(" ");
 			for (String s : andSplit){
-				if (!s.trim().isEmpty()){
+				if (!s.trim().isEmpty())
 					result.add(s.trim());
-				}
 			}
 
 			if (!(pos1+1 > pos2))
@@ -190,9 +183,8 @@ public class FilterViewImpl extends Composite implements FilterView{
 		
 		String [] andSplit = text.split(" ");
 		for (String s : andSplit){
-			if (!s.trim().isEmpty()){
+			if (!s.trim().isEmpty())
 				result.add(s.trim());
-			}
 		}
 				
 		return result;
@@ -290,9 +282,5 @@ public class FilterViewImpl extends Composite implements FilterView{
 				!chkDatatype.getValue() && !chkObject.getValue() && 
 				!chkBuiltin.getValue() && !chkComments.getValue() && 
 				!chkSameDiferent.getValue() && !chkDataRange.getValue());
-
-		
 	}
-
-	
 }

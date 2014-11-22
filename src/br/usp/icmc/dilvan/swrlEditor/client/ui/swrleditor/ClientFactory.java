@@ -14,8 +14,6 @@ import br.usp.icmc.dilvan.swrlEditor.client.ui.swrleditor.view.VisualizationView
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 
-//import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
-
 
 public interface ClientFactory
 {

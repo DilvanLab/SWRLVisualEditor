@@ -6,7 +6,6 @@ import br.usp.icmc.dilvan.swrlEditor.client.ui.swrleditor.activity.info.RuleInfo
 
 import com.google.gwt.user.client.ui.IsWidget;
 
-
 /**
  *
  * @author Joao Paulo Orlando

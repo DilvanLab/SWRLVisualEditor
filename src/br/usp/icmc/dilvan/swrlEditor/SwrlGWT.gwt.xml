@@ -22,11 +22,8 @@
 
 
   <!-- Other module inherits                                      -->
-  <!--  inherits name='edu.stanford.bmir.protege.web.WebProtege' /-->
-  <inherits name='com.gwtext.GwtExt' />
   <inherits name='com.google.gwt.widgetideas.GWTCanvas' />
   <inherits name="com.google.gwt.widgetideas.BasicTable" />
-  <!--  inherits name='org.restlet.Restlet'/-->
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='br.usp.icmc.dilvan.swrlEditor.client.SwrlGWT'/>

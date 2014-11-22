@@ -59,7 +59,6 @@ public class CompositionViewImpl extends Composite implements CompositionView {
 	private static CompositionViewImplUiBinder uiBinder = GWT
 			.create(CompositionViewImplUiBinder.class);
 
-	
 	private Presenter presenter;
 	private boolean writePermission;
 	
@@ -150,13 +149,11 @@ public class CompositionViewImpl extends Composite implements CompositionView {
 			editorList.setNewRule(rule);
 			editorSWRL.setNewRule(rule);
 			break;
-			
 		case 1:
 			editorSelected = editorSWRL;
 			editorSWRL.setNewRule(rule);
 			editorList.setNewRule(rule);
 			break;
-
 		default:
 			break;
 		}		
@@ -169,12 +166,10 @@ public class CompositionViewImpl extends Composite implements CompositionView {
 			editorSelected = editorList;
 			editorList.setRule(this.rule);
 			break;
-			
 		case 1:
 			editorSelected = editorSWRL;
 			editorSWRL.setRule(this.rule);
 			break;
-
 		default:
 			break;
 		}
@@ -191,7 +186,6 @@ public class CompositionViewImpl extends Composite implements CompositionView {
 			editorSelected = editorList;
 			editorList.setRule(this.rule);
 		}
-			
 		editorSelected.addPredicate(typeAtom, predicate, isAntecedent);
 	}
 
@@ -224,7 +218,6 @@ public class CompositionViewImpl extends Composite implements CompositionView {
 			lbl.setWidth("95%");
 			pnlAddErrors.add(lbl);
 		}
-		
 	}
 
 	@Override
@@ -238,7 +231,6 @@ public class CompositionViewImpl extends Composite implements CompositionView {
 		}
 		SuggestTerm st;
 		for(Atom term : listTerms){
-			
 			st = new SuggestTerm(term, (SuggestTerm.Presenter) presenter, typeView);
 			lstSuggestTerms.insert(st, 0);
 		}		
@@ -258,7 +250,6 @@ public class CompositionViewImpl extends Composite implements CompositionView {
 			similarRulePanel.showListRules(ruleName, typeView, null, TYPE_VIEW_SIMILAR.EDITOR);
 		else
 			similarRulePanel.showListRules(ruleName, typeView, null, TYPE_VIEW_SIMILAR.SWRL);
-			
 		similarRulePanel.setPopUpConfiguration(panel);
 	}
 	
@@ -276,7 +267,6 @@ public class CompositionViewImpl extends Composite implements CompositionView {
 	
 	@UiHandler("btnCancel")
 	void onBtnCancelClick(ClickEvent event) {
-		//if (
 		Window.confirm("Do you really want to discard the changes?",
 				new Runnable() {
 					@Override

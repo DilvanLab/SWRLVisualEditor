@@ -15,5 +15,4 @@ public class SimpleRuleViewText extends SimpleRuleView {
 		contentRule.clear();
 		contentRule.getElement().setInnerHTML(rule.getParaphrase());
 	}
-
 }

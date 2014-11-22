@@ -197,8 +197,8 @@ public class VisualizationViewDecisionTree extends Composite {
 
 		int sumWidth = 0;
 
-		for (int i = 0; i < majorWidth.length; i++)
-			sumWidth = (int) (sumWidth + (majorWidth[i] * widthChar) + SPACE_BETWEEN_NODES);
+		for (int aMajorWidth : majorWidth)
+			sumWidth = (int) (sumWidth + (aMajorWidth * widthChar) + SPACE_BETWEEN_NODES);
 
 		sumWidth += 600;
 
@@ -212,7 +212,6 @@ public class VisualizationViewDecisionTree extends Composite {
 		scroolTree.setVerticalScrollPosition(scroolTop
 				- (scroolTree.getOffsetHeight() / 2));
 		scroolTree.setHorizontalScrollPosition(0);
-
 	}
 
 	private int calculatesSizeNode(NodeDecisionTree node,
@@ -224,19 +223,13 @@ public class VisualizationViewDecisionTree extends Composite {
 		}
 		int sum = 0;
 
-		for (int i = 0; i < node.getChildren().size(); i++) {
-			NodeTreeInt newSheetNumber = sheetNumber
-					.addChildNodes(new NodeTreeInt(0));
+		for (NodeDecisionTree child : node.getChildren()) {
+			NodeTreeInt newSheetNumber = sheetNumber.addChildNodes(new NodeTreeInt(0));
 
-			sum = sum
-					+ calculatesSizeNode(node.getChildren().get(i),
-							newSheetNumber, viewLevel - 1, majorWidth);
+			sum += calculatesSizeNode(child, newSheetNumber, viewLevel - 1, majorWidth);
 
-			if (majorWidth[NUMBER_LEVELS_DISPLAYED - viewLevel] < node
-					.getChildren().get(i).getValue().length())
-				majorWidth[NUMBER_LEVELS_DISPLAYED - viewLevel] = node
-				.getChildren().get(i).getValue().length();
-
+			if (majorWidth[NUMBER_LEVELS_DISPLAYED - viewLevel] < child.getValue().length())
+				majorWidth[NUMBER_LEVELS_DISPLAYED - viewLevel] = child.getValue().length();
 		}
 		if (sum == 0) {
 			sheetNumber.setValue(1);
@@ -324,7 +317,6 @@ public class VisualizationViewDecisionTree extends Composite {
 
 				if (rootLabel== null)
 					rootLabel = labelAux;
-
 			}
 			return 0;
 		}
@@ -413,8 +405,6 @@ public class VisualizationViewDecisionTree extends Composite {
 
 				@Override
 				public void onShowToolTip(Widget sender, Event event){}
-
-
 			});
 
 		} else if (label.getText().equals(SUSPENSION_POINTS)) {
