@@ -4,6 +4,10 @@
 *.jar
 *.war
 
+# Intellij Idea files
+.idea
+*.iml
+
 # gwt caches and compiled units #
 war/gwt_bree/
 gwt-unitCache/
