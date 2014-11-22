@@ -19,7 +19,7 @@
  * @since       1.0
  */
 
-package edu.stanford.smi.protegex.oboconverter.tabwidget;
+package br.usp.icmc.dilvan.swrlEditor.swrlEditorTab;
 
 import java.awt.BorderLayout;
 import java.io.File;
@@ -90,13 +90,13 @@ class Browser {
 
     final WebView browser = new WebView();
     final WebEngine webEngine = browser.getEngine();
-    OboConverterTab tab;
+    SWRLEditorTab tab;
 
-    public Browser(OboConverterTab tab1) {
+    public Browser(SWRLEditorTab tab1) {
 	tab = tab1;
 
 	// load the web page
-	webEngine.load("http://127.0.0.1:"+ OboConverterTab.servletPort + "/SwrlGWT.html");
+	webEngine.load("http://127.0.0.1:"+ SWRLEditorTab.servletPort + "/SwrlGWT.html");
 
 	// process page loading
 	webEngine.getLoadWorker().stateProperty().addListener(
@@ -142,7 +142,7 @@ class BrowserPanel extends JPanel {
 }
 
 @SuppressWarnings("serial")
-public class OboConverterTab extends AbstractTabWidget {
+public class SWRLEditorTab extends AbstractTabWidget {
 
     public static KnowledgeBase getKb() {
 	if (kb == null)
@@ -164,7 +164,7 @@ public class OboConverterTab extends AbstractTabWidget {
 	return true;
     }
 
-    private static final Logger log = Logger.getLogger(OboConverterTab.class.getName() );
+    private static final Logger log = Logger.getLogger(SWRLEditorTab.class.getName() );
     private static KnowledgeBase kb;
     JSplitPane pane;
 
@@ -173,7 +173,7 @@ public class OboConverterTab extends AbstractTabWidget {
 
     volatile static int servletPort = -1;
 
-    volatile static boolean servletOn = false;
+    //volatile static boolean servletOn = false;
 
     private JComponent createClsesPanel() {
 	InstanceClsesPanel clsPanel = new InstanceClsesPanel(getProject());
@@ -212,7 +212,7 @@ public class OboConverterTab extends AbstractTabWidget {
 	propPanel.addSelectionListener(new SelectionListener() {
 	    @Override
 	    public void selectionChanged(SelectionEvent event) {
-		log.info("lll= "+event.getSelectable());
+		log.info("l1= "+event.getSelectable());
 		log.info("l2= "+((OWLPropertyHierarchiesPanel)event.getSelectable()).isValid());
 
 		Object obj= ((OWLPropertyHierarchiesPanel) event.getSource()).getSelection().iterator().next();
@@ -236,12 +236,12 @@ public class OboConverterTab extends AbstractTabWidget {
 	Platform.runLater(new Runnable() {
 	    @Override
 	    public void run() {
-		while (!servletOn);
+		while (servletPort == -1);
 		// Important! Once platform exits we cannot create
 		// more javafx components
 		Platform.setImplicitExit(false);
 
-		browser1 = new Browser(OboConverterTab.this);
+		browser1 = new Browser(SWRLEditorTab.this);
 		Scene scene = new Scene(browser1.browser);//,750,500, Color.web("#666970"));
 		fxPanel.setScene(scene);
 	    }
@@ -273,7 +273,7 @@ public class OboConverterTab extends AbstractTabWidget {
 	}
 	log.info("Init: Kb ok. " + kb.toString());
 
-	if (!servletOn)
+	if (servletPort == -1)
 	    initServlet();
 	setIcon(Icons.getViewClsIcon());// .getInstanceIcon());
 	setLabel("SWRL Editor");
@@ -288,11 +288,14 @@ public class OboConverterTab extends AbstractTabWidget {
 		Server server = new Server(0);
 
 		WebAppContext webapp = new WebAppContext();
-		webapp.setClassLoader(OboConverterTab.this.getClass()
-			.getClassLoader());
+		webapp.setClassLoader(SWRLEditorTab.this.getClass().getClassLoader());
 		webapp.setContextPath("/");
-		String file = new File(".").getAbsolutePath() + "/war";
-		log.info(file);
+		String file = new File(".").getAbsolutePath();
+		if (file.endsWith("SWRLVisualEditor/."))
+		    file = file + "/war";
+		else
+		    file = file + "/plugins/br.usp.icmc.dilvan.swrlEditor/war";
+		log.info("War folder: "+ file);
 		webapp.setWar(file);
 		server.setHandler(webapp);
 
@@ -300,8 +303,8 @@ public class OboConverterTab extends AbstractTabWidget {
 		    server.start();
 		    Thread.sleep(1000);
 		    servletPort = server.getConnectors()[0].getLocalPort();
-		    log.info("port= "+servletPort);
-		    servletOn = true;
+		    log.info("port= " + servletPort);
+		    //servletOn = true;
 		    server.join();
 		} catch (Exception e) {
 		    e.printStackTrace();

@@ -27,11 +27,10 @@ import br.usp.icmc.dilvan.swrlEditor.server.swrleditor.manager.SWRLManager;
 import br.usp.icmc.dilvan.swrlEditor.server.swrleditor.manager.protege3.OntologyManagerProtege3;
 import br.usp.icmc.dilvan.swrlEditor.server.swrleditor.manager.protege3.SWRLManagerProtege3;
 import br.usp.icmc.dilvan.swrlEditor.server.swrleditor.suggestterms.SuggestTerms;
+import br.usp.icmc.dilvan.swrlEditor.swrlEditorTab.SWRLEditorTab;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-
-import edu.stanford.smi.protegex.oboconverter.tabwidget.OboConverterTab;
 
 
 
@@ -224,7 +223,7 @@ public class SWRLEditorServiceImpl extends RemoteServiceServlet implements SWRLS
 	protected OntologyManager getOntologyManager(String projectName){
 		if(!ontologyManager.containsKey(projectName)){
 			ontologyManager.put(projectName, new OntologyManagerProtege3(
-					OboConverterTab.getKb(), projectName));
+					SWRLEditorTab.getKb(), projectName));
 		}
 		return ontologyManager.get(projectName);
 	}
