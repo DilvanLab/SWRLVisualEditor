@@ -13,69 +13,66 @@ import br.usp.icmc.dilvan.swrlEditor.client.ui.swrleditor.activity.visualization
 
 import com.google.gwt.user.client.ui.IsWidget;
 
-
 /**
  * @author Joao Paulo Orlando
  */
 public interface VisualizationView extends IsWidget
 {
-	public enum TYPE_VIEW {ID, LABEL}
-	
-	void setPresenter(Presenter presenter);
-	void setWritePermission(boolean permission);
-	void setConfiguration(Map<String, Object> portletConfiguration);
-	void setTypeView(TYPE_VIEW typeView);
-	void setRuleSelected(String ruleName);
-	
-	void setRuleSet(RuleSet rules);
+    public interface Presenter
+    {
+	public static final int DEFAULT_NUMBER_GROUPS = 8;
 
-	void setGroupAlgorithmList(List<NameGroupAlgorithm> algorithms, Map<String, Object> config);
-	public void setGroups(ArrayList<ArrayList<String>> groups);
+	void deleteRule(String nameRule);
 
-	void setDecisionTreeAlgorithmList(List<String> algorithms, Map<String, Object> config);
-	void setDecisionTree(NodeDecisionTree root);
-	
-	void refreshRulesView();
-	
-	void showSimilarRules(String nameRule, List<Rule> result);
-	
-	void addRuleEvent(int index, Rule rule);
-	void deleteRuleEvent(int index, Rule rule);
-	
-	void finishedRun();
-	
-	public interface Presenter
-	{
-		public static final int DEFAULT_NUMBER_GROUPS = 8;
+	AutismModel getAutismModel(Rule rule, TYPE_VIEW typeView);
 
-		void getRuleSet();
-		
-		void getGroups(String algorithmName, int numberGroups);
+	void getDecisionTree(String algorithmName);
 
-		void getDecisionTree(String algorithmName);
-		
-		Rule getRuleByName(String ruleName);		
+	Filter getFilter();
 
-		AutismModel getAutismModel(Rule rule, TYPE_VIEW typeView);
-		
-		Filter getFilter();
-		
-		void getSimilarRules(Rule rule, boolean isNew);
-		
-		void deleteRule(String nameRule);
-		
-		void goToNewRule();
-		void goToNewRule(String antecedent);
-		
-		void goToOptions();
-		void goToInfo();
-		void goToFilter();
-		void goToEditRule(String ruleName);
-		void goToDuplicateAndEditRule(String ruleName);
+	void getGroups(String algorithmName, int numberGroups);
 
-		void runRules();
-		
-	}
+	Rule getRuleByName(String ruleName);
 
+	void getRuleSet();
+
+	void getSimilarRules(Rule rule, boolean isNew);
+
+	void goToDuplicateAndEditRule(String ruleName);
+	void goToEditRule(String ruleName);
+
+	void goToFilter();
+	void goToInfo();
+	void goToNewRule();
+	void goToNewRule(String antecedent);
+	void goToOptions();
+
+	void runRules();
+    }
+
+    public enum TYPE_VIEW {ID, LABEL}
+    void addRuleEvent(int index, Rule rule);
+    void deleteRuleEvent(int index, Rule rule);
+    void finishedRun();
+    void refreshRulesView();
+
+    void setConfiguration(Map<String, Object> portletConfiguration);
+
+    void setDecisionTree(NodeDecisionTree root);
+    void setDecisionTreeAlgorithmList(List<String> algorithms, Map<String, Object> config);
+
+    void setGroupAlgorithmList(List<NameGroupAlgorithm> algorithms, Map<String, Object> config);
+    public void setGroups(ArrayList<ArrayList<String>> groups);
+
+    void setPresenter(Presenter presenter);
+
+    void setRuleSelected(String ruleName);
+
+    void setRuleSet(RuleSet rules);
+    void setTypeView(TYPE_VIEW typeView);
+
+    void setWritePermission(boolean permission);
+
+    void showSimilarRules(String nameRule, List<Rule> result);
 }
 

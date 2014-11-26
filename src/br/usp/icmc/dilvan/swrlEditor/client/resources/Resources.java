@@ -8,44 +8,43 @@ import com.google.gwt.resources.client.ImageResource.RepeatStyle;
 
 public interface Resources extends ClientBundle {
 
-	public static final Resources INSTANCE = GWT.create(Resources.class);
-	
-	@Source("btnSwrlEditor.png")
-	@ImageOptions(repeatStyle=RepeatStyle.Both)
-	ImageResource btnSwrlEditor();
+    public static final Resources INSTANCE = GWT.create(Resources.class);
 
-	ImageResource builtin();
+    @Source("btnSwrlEditor.png")
+    @ImageOptions(repeatStyle=RepeatStyle.Both)
+    ImageResource btnSwrlEditor();
 
-	ImageResource class_();
+    ImageResource builtin();
 
-	@Source("class-antecedent.png")
-	ImageResource classAntecedent();
+    ImageResource class_();
 
-	ImageResource edit();
+    @Source("class-antecedent.png")
+    ImageResource classAntecedent();
 
-	ImageResource error();
+    ImageResource edit();
 
-	ImageResource fechar();
+    ImageResource error();
 
-	ImageResource filter();
+    ImageResource fechar();
 
-	ImageResource individuo();
+    ImageResource filter();
 
-	ImageResource loading();
+    ImageResource individuo();
 
-	ImageResource ok();
+    ImageResource loading();
 
-	@Source("OWLDatatypeProperty.gif")
-	ImageResource oWLDatatypeProperty();
+    ImageResource ok();
 
-	@Source("OWLObjectProperty.gif")
-	ImageResource oWLObjectProperty();
+    @Source("OWLDatatypeProperty.gif")
+    ImageResource oWLDatatypeProperty();
 
-	@Source("same-different.png")
-	ImageResource sameDifferent();
+    @Source("OWLObjectProperty.gif")
+    ImageResource oWLObjectProperty();
 
-	Swrleditor swrleditor();
+    @Source("same-different.png")
+    ImageResource sameDifferent();
 
-	ImageResource warning();
+    Swrleditor swrleditor();
 
+    ImageResource warning();
 }

@@ -17,36 +17,36 @@ import com.google.gwt.place.shared.PlaceController;
 
 public interface ClientFactory
 {
-	static final String DEFAULT_PROJECT_NAME = "swrlFX";
+    static final String DEFAULT_PROJECT_NAME = "swrlFX";
 
-	void addEventsViews(RuleSet rules, RuleEvents events);
-	CompositionView getCompositionView();
-	EventBus getEventBus();
+    void addEventsViews(RuleSet rules, RuleEvents events);
+    CompositionView getCompositionView();
+    EventBus getEventBus();
 
-	FilterView getFilterView();
-	InfoView getInfoView();
-	OptionsView getOptionsView();
-	PlaceController getPlaceController();
-	//void setPortlet(AbstractEntityPortlet portlet);
-	Map<String, Object> getPortletConfiguration();
+    FilterView getFilterView();
+    InfoView getInfoView();
+    OptionsView getOptionsView();
+    PlaceController getPlaceController();
+    //void setPortlet(AbstractEntityPortlet portlet);
+    Map<String, Object> getPortletConfiguration();
 
-	//void setProject(Project project);
-	//Project getProject();
-	String getProjectName();
-	SWRLServiceAsync getRpcService();
-
-
-	String getURLWebProtege();
-	String getUserLogged();
-
-	VisualizationView getVisualizationView();
-	void saveOptions(AbstractAsyncHandler<Void> saveHandler);
+    //void setProject(Project project);
+    //Project getProject();
+    String getProjectName();
+    SWRLServiceAsync getRpcService();
 
 
-	void setConfigOnLogin(Map<String, Object> properties);
-	void setOption(String name, Object value);
+    String getURLWebProtege();
+    String getUserLogged();
 
-	void setURLWebProtege(String urlWebProtege);
-	void setUserLogged(String User);
-	void setWritePermission(boolean hasWritePermission);
+    VisualizationView getVisualizationView();
+    void saveOptions(AbstractAsyncHandler<Void> saveHandler);
+
+
+    void setConfigOnLogin(Map<String, Object> properties);
+    void setOption(String name, Object value);
+
+    void setURLWebProtege(String urlWebProtege);
+    void setUserLogged(String User);
+    void setWritePermission(boolean hasWritePermission);
 }

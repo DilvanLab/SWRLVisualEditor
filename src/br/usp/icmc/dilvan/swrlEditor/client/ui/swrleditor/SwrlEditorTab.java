@@ -5,9 +5,9 @@ package br.usp.icmc.dilvan.swrlEditor.client.ui.swrleditor;
 
 @SuppressWarnings("unchecked")
 public class SwrlEditorTab { //extends AbstractTab {
-	
-//	public SwrlEditorTab(final Project project) {		
-//		super(project);
-//	}
+
+    //	public SwrlEditorTab(final Project project) {
+    //		super(project);
+    //	}
 
 }

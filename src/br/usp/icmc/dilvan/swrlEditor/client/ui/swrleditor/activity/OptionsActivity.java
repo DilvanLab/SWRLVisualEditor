@@ -14,9 +14,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-//import com.gwtext.client.widgets.MessageBox;
-
-//import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 
 public class OptionsActivity extends AbstractActivity implements OptionsView.Presenter {
     class SaveConfigHandler extends AbstractAsyncHandler<Void> {
@@ -64,7 +61,6 @@ public class OptionsActivity extends AbstractActivity implements OptionsView.Pre
 	clientFactory.setOption(name, value);
     }
 
-
     @Override
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 
@@ -96,5 +92,4 @@ public class OptionsActivity extends AbstractActivity implements OptionsView.Pre
 
 	containerWidget.setWidget(optionsView.asWidget());
     }
-
 }

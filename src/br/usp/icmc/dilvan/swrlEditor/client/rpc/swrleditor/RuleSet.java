@@ -5,15 +5,14 @@ import java.util.List;
 
 import br.usp.icmc.dilvan.swrlEditor.client.rpc.swrleditor.rule.Rule;
 
-
 public interface RuleSet extends Serializable, List<Rule> {
-	public int getCountAtoms();
-	public int getCountAtomsAntecedent();
-	public int getCountAtomsConsequent();
+    public int getCountAtoms();
+    public int getCountAtomsAntecedent();
+    public int getCountAtomsConsequent();
 
-	public int getRule(String ruleName);
-	public int getIndexToInsertRule(String name);
+    public int getIndexToInsertRule(String name);
+    public int getRule(String ruleName);
 
-	public Long getVersionOntology();
-	public void setVersionOntology(Long version);
+    public Long getVersionOntology();
+    public void setVersionOntology(Long version);
 }

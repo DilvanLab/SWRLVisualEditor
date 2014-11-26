@@ -4,114 +4,118 @@ package br.usp.icmc.dilvan.swrlEditor.client.rpc.swrleditor.decisiontree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.usp.icmc.dilvan.swrlEditor.client.rpc.swrleditor.decisiontree.NodeDecisionTree;
-
 public class NodeDecisionTreeRanking implements NodeDecisionTree {
 
-	//private defaultNodeInRulesTreeLabel nodeLabel;
+    //private defaultNodeInRulesTreeLabel nodeLabel;
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String value;
-	private ATOM_TYPE type;
-	private String toolTip;
+    private String value;
+    private ATOM_TYPE type;
+    private String toolTip;
 
-	private NodeDecisionTree parentNode;
-	
-	private String nameRule = "";
-	
-	private List<String> rulesRelated;
+    private NodeDecisionTree parentNode;
 
-	/* Children nodes */
-	private List<NodeDecisionTree> childNodes = new ArrayList<NodeDecisionTree>();
+    private String nameRule = "";
+
+    private List<String> rulesRelated;
+
+    /* Children nodes */
+    private final List<NodeDecisionTree> childNodes = new ArrayList<NodeDecisionTree>();
 
 
-	public NodeDecisionTreeRanking() {
-		super();
-		this.rulesRelated = new ArrayList<String>();
-		this.nameRule = "";
+    public NodeDecisionTreeRanking() {
+	super();
+	rulesRelated = new ArrayList<String>();
+	nameRule = "";
 
-	}
+    }
 
-	public NodeDecisionTreeRanking(NodeDecisionTree parentNode, String toolTip) {
-		this();
-		this.value = "";
-		this.toolTip = toolTip;
-		//this.nodeLabel = new defaultNodeInRulesTreeLabel(this);
-		this.parentNode = parentNode;
-	}
+    public NodeDecisionTreeRanking(NodeDecisionTree parentNode, String toolTip) {
+	this();
+	value = "";
+	this.toolTip = toolTip;
+	//this.nodeLabel = new defaultNodeInRulesTreeLabel(this);
+	this.parentNode = parentNode;
+    }
 
-	public String getValue(){
-		return value;
-	}
-	public void setValue(String value){
-		this.value = value;
-		//nodeLabel.setText(value);
-	}
+    public void addChildNodes(NodeDecisionTree node) {
+	childNodes.add(node);
+    }
 
-	@Override
-	public ATOM_TYPE getAtomType(){
-		return type;
-	}
-	public void setAtomType(ATOM_TYPE type){
-		this.type = type;
-	}
+    @Override
+    public ATOM_TYPE getAtomType(){
+	return type;
+    }
 
-	public NodeDecisionTree getParentNode() {
-		return parentNode;
-	}
+    public NodeDecisionTree getChild(int index) {
+	return childNodes.get(index);
+    }
 
-	public void setParentNode(NodeDecisionTree parentNode) {
-		this.parentNode = parentNode;
-	}
+    @Override
+    public List<NodeDecisionTree> getChildren() {
+	return childNodes;
+    }
 
-	public String getToolTip() {
-		return toolTip;
-	}
-	public void setToolTip(String toolTip){
-		this.toolTip = toolTip;
-	}
+    public int getNumberOfChildren() {
+	return childNodes.size();
+    }
 
-	public void addChildNodes(NodeDecisionTree node) {
-		this.childNodes.add(node);
-	}
+    @Override
+    public NodeDecisionTree getParentNode() {
+	return parentNode;
+    }
 
-	public NodeDecisionTree removeChildNodes(int index) {
-		return this.childNodes.remove(index);
-	}
+    @Override
+    public String getRuleName() {
+	return nameRule;
+    }
 
-	public NodeDecisionTree getChild(int index) {
-		return this.childNodes.get(index);
-	}
+    @Override
+    public List<String> getRulesRelated() {
+	return rulesRelated;
+    }
 
-	public void setChildNodes(int index, NodeDecisionTree node) {
-		this.childNodes.set(index, node);
-	}
+    @Override
+    public String getToolTip() {
+	return toolTip;
+    }
 
-	public int getNumberOfChildren() {
-		return this.childNodes.size();
-	}
+    @Override
+    public String getValue(){
+	return value;
+    }
 
-	@Override
-	public List<NodeDecisionTree> getChildren() {
-		
-		return childNodes;
-	}
+    public NodeDecisionTree removeChildNodes(int index) {
+	return childNodes.remove(index);
+    }
 
-	@Override
-	public String getRuleName() {
-		return nameRule;
-	}
-	public void setRuleName(String nameRule) {
-		this.nameRule = nameRule;
-	}
+    public void setAtomType(ATOM_TYPE type){
+	this.type = type;
+    }
 
-	@Override
-	public List<String> getRulesRelated() {
-		return rulesRelated;
-	}
-	
-	public void setRulesRelated(List<String> rulesRelated) {
-		this.rulesRelated = rulesRelated;
-	}
+    public void setChildNodes(int index, NodeDecisionTree node) {
+	childNodes.set(index, node);
+    }
+
+    public void setParentNode(NodeDecisionTree parentNode) {
+	this.parentNode = parentNode;
+    }
+
+    public void setRuleName(String nameRule) {
+	this.nameRule = nameRule;
+    }
+
+    public void setRulesRelated(List<String> rulesRelated) {
+	this.rulesRelated = rulesRelated;
+    }
+
+    public void setToolTip(String toolTip){
+	this.toolTip = toolTip;
+    }
+
+    public void setValue(String value){
+	this.value = value;
+	//nodeLabel.setText(value);
+    }
 }

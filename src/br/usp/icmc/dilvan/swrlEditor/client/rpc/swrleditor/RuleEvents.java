@@ -5,20 +5,18 @@ import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class RuleEvents extends ArrayList<RuleEvent> implements Serializable  {
-	
-	private Long versionOntology;
-	
-	public RuleEvents() {
-		super();
-	}
-	
-	public Long getVersionOntology() {
-		return versionOntology;
-	}
 
-	public void setVersionOntology(Long version) {
-		this.versionOntology = version;
-		
-	}
+    private Long versionOntology;
 
+    public RuleEvents() {
+	super();
+    }
+
+    public Long getVersionOntology() {
+	return versionOntology;
+    }
+
+    public void setVersionOntology(Long version) {
+	versionOntology = version;
+    }
 }

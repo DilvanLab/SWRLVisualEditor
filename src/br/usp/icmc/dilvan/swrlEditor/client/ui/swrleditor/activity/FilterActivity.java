@@ -19,63 +19,61 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
-
 public class FilterActivity extends AbstractActivity implements FilterView.Presenter, OntologyView.Presenter  {
-	private ClientFactory clientFactory;
-	private AppActivityMapper activityMapper;
-	
-	public FilterActivity(FilterPlace place, ClientFactory clientFactory, AppActivityMapper activityMapper) {
-		this.clientFactory = clientFactory;
-		this.activityMapper = activityMapper;
-	}
+    private final ClientFactory clientFactory;
+    private final AppActivityMapper activityMapper;
 
-	/**
-	 * Invoked by the ActivityManager to start a new Activity
-	 */
-	@Override
-	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		UtilLoading.showLoadSWRLEditor();
-		FilterView filterView = clientFactory.getFilterView();
-		filterView.setPresenter(this);
-		filterView.setFilter(activityMapper.getFilter());
-		containerWidget.setWidget(filterView.asWidget());
-		UtilLoading.hide();
-	}
+    public FilterActivity(FilterPlace place, ClientFactory clientFactory, AppActivityMapper activityMapper) {
+	this.clientFactory = clientFactory;
+	this.activityMapper = activityMapper;
+    }
 
-	@Override
-	public void goToVisualization() {
-		clientFactory.getPlaceController().goTo(new VisualizationPlace(clientFactory.getURLWebProtege()));
-	}
-	
-	@Override
-	public void search(Filter f) {
-		activityMapper.setFilter(f);
-		goToVisualization();
-		
-	}
+    @Override
+    public void getBuiltins() {
+	clientFactory.getRpcService().getListBuiltins(clientFactory.getProjectName(), new AsyncCallback<ArrayList<String>>() {
 
-	@Override
-	public void setSelectedPredicate(TYPE_ATOM typeAtom, String value, int left, int top) {
-		PopUpLocationItemFilter panel = new PopUpLocationItemFilter(clientFactory.getFilterView());
-		panel.setItemName(value, typeAtom);
-		panel.setAutoHideEnabled(true);
-		panel.setPopupPosition(left, top);
-		panel.show();
-	}
+	    @Override
+	    public void onFailure(Throwable caught) {
+		Window.alert("Error fetching builtins");
+	    }
 
-	@Override
-	public void getBuiltins() {
-		clientFactory.getRpcService().getListBuiltins(clientFactory.getProjectName(), new AsyncCallback<ArrayList<String>>() {
-			
-			@Override
-			public void onSuccess(ArrayList<String> result) {
-				clientFactory.getFilterView().setBuiltins(result);
-			}
-			
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching builtins");
-			}
-		});		
-	}
+	    @Override
+	    public void onSuccess(ArrayList<String> result) {
+		clientFactory.getFilterView().setBuiltins(result);
+	    }
+	});
+    }
+
+    @Override
+    public void goToVisualization() {
+	clientFactory.getPlaceController().goTo(new VisualizationPlace(clientFactory.getURLWebProtege()));
+    }
+
+    @Override
+    public void search(Filter f) {
+	activityMapper.setFilter(f);
+	goToVisualization();
+    }
+
+    @Override
+    public void setSelectedPredicate(TYPE_ATOM typeAtom, String value, int left, int top) {
+	PopUpLocationItemFilter panel = new PopUpLocationItemFilter(clientFactory.getFilterView());
+	panel.setItemName(value, typeAtom);
+	panel.setAutoHideEnabled(true);
+	panel.setPopupPosition(left, top);
+	panel.show();
+    }
+
+    /**
+     * Invoked by the ActivityManager to start a new Activity
+     */
+    @Override
+    public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
+	UtilLoading.showLoadSWRLEditor();
+	FilterView filterView = clientFactory.getFilterView();
+	filterView.setPresenter(this);
+	filterView.setFilter(activityMapper.getFilter());
+	containerWidget.setWidget(filterView.asWidget());
+	UtilLoading.hide();
+    }
 }

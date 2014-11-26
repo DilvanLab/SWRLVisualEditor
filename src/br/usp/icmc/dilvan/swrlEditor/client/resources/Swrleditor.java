@@ -4,123 +4,122 @@ import com.google.gwt.resources.client.CssResource;
 
 public interface Swrleditor extends CssResource {
 
-	String itemFilter();
+    String allButton();
 
-	String consequent();
+    String antecedent();
 
-	String q_builtin();
+    String atom_BUILTIN();
 
-	String atom_BUILTIN();
+    String atom_CLASS();
 
-	String panelBase_SimpleRuleView();
+    String atom_DATA_RANGE();
 
-	String menuItemDecisionTreeDisable();
+    String atom_DATAVALUE_PROPERTY();
 
-	@ClassName("decision-tree-background")
-	String decisionTreeBackground();
+    String atom_INDIVIDUAL_PROPERTY();
 
-	String param_INDIVIDUALID();
+    String atom_SAME_DIFERENT();
 
-	String bold();
+    String bold();
 
-	String linkselected();
+    String border_panel();
 
-	String panel_cbtn();
+    String consequent();
 
-	String antecedent();
+    @ClassName("decision-tree-background")
+    String decisionTreeBackground();
 
-	String mlink();
+    String det();
 
-	String param_IVARIABLE();
+    String editor_DVARIABLE();
 
-	String param_DVARIABLE();
+    String editor_IVARIABLE();
 
-	String q_subnivel();
+    String error();
 
-	String vtlink();
+    @ClassName("gwt-TreeItem")
+    String gwtTreeItem();
 
-	String editor_DVARIABLE();
+    String headerAdvancedFilters();
 
-	@ClassName("header-name-class")
-	String headerNameClass();
+    @ClassName("header-name-class")
+    String headerNameClass();
 
-	String properties();
+    String hint();
 
-	String atom_INDIVIDUAL_PROPERTY();
+    String itemFilter();
 
-	String menuItemDecisionTree();
+    @ClassName("label-uppercase")
+    String labelUppercase();
 
-	String atom_DATA_RANGE();
+    String link();
 
-	@ClassName("gwt-TreeItem")
-	String gwtTreeItem();
+    @ClassName("link-remove")
+    String linkRemove();
 
-	String panel();
+    String linkselected();
 
-	@ClassName("pointer-cursor")
-	String pointerCursor();
+    String menuItemDecisionTree();
 
-	String separador();
+    String menuItemDecisionTreeDisable();
 
-	String operatorFilter();
+    String mlink();
 
-	String editor_IVARIABLE();
+    String noerror();
 
-	@ClassName("white-background")
-	String whiteBackground();
+    String operatorFilter();
 
-	String swrltext();
+    String panel();
 
-	String det();
+    String panel_cbtn();
 
-	String titleViews();
+    String panel_sbtn();
 
-	String link();
+    String panel_white();
 
-	@ClassName("swrl-rule")
-	String swrlRule();
+    String panelBase_SimpleRuleView();
 
-	String noerror();
+    String param_DATALITERAL();
 
-	@ClassName("link-remove")
-	String linkRemove();
+    String param_DVARIABLE();
 
-	String border_panel();
+    String param_INDIVIDUALID();
 
-	String panel_sbtn();
+    String param_IVARIABLE();
 
-	@ClassName("popup-title")
-	String popupTitle();
+    String peq();
 
-	@ClassName("label-uppercase")
-	String labelUppercase();
+    @ClassName("pointer-cursor")
+    String pointerCursor();
 
-	String atom_SAME_DIFERENT();
+    @ClassName("popup-title")
+    String popupTitle();
 
-	String treeItemLink();
+    String properties();
 
-	String error();
+    String q_builtin();
 
-	String panel_white();
+    String q_class();
 
-	String hint();
+    String q_subnivel();
 
-	String treeEntity();
+    String separador();
 
-	String peq();
+    @ClassName("swrl-rule")
+    String swrlRule();
 
-	String headerAdvancedFilters();
+    String swrltext();
 
-	String q_class();
+    String titleViews();
 
-	String allButton();
+    String treeEntity();
 
-	String atom_CLASS();
+    String treeItemLink();
 
-	String atom_DATAVALUE_PROPERTY();
+    String vtlink();
 
-	String warning();
+    String warning();
 
-	String param_DATALITERAL();
-
+    @ClassName("white-background")
+    String whiteBackground();
 }

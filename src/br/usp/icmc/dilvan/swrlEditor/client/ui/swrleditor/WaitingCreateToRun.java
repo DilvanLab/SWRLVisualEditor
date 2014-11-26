@@ -5,46 +5,42 @@ import com.google.gwt.user.client.ui.Widget;
 
 public abstract class WaitingCreateToRun implements Runnable {
 
-	private Widget componentForTest;
-	private int delayMillis;
-	private Timer timer;
+    private final Widget componentForTest;
+    private final int delayMillis;
+    private Timer timer;
 
-	public WaitingCreateToRun(Widget componentForTest, int delayMillis) {
-		super();
-		this.componentForTest = componentForTest;
-		this.delayMillis = delayMillis;
-	}
-	
-	public void start(){
-		timer = new Timer() {
-			@Override
-			public void run() {
-				
-				//System.out.println("Tentou........");
-				
-				if ((WaitingCreateToRun.this.componentForTest.getOffsetHeight() > 0) || (WaitingCreateToRun.this.componentForTest.getOffsetWidth() > 0)){
+    public WaitingCreateToRun(Widget componentForTest, int delayMillis) {
+	super();
+	this.componentForTest = componentForTest;
+	this.delayMillis = delayMillis;
+    }
 
-					//System.out.println("Feito..");
-					
-					WaitingCreateToRun.this.run();
-					this.cancel();
+    public void start(){
+	timer = new Timer() {
+	    @Override
+	    public void run() {
 
-					try {
-						WaitingCreateToRun.this.finalize();
-					} catch (Throwable e) {
-						e.printStackTrace();
-					}
-					
-				}else
-					schedule(WaitingCreateToRun.this.delayMillis);
-			}
-		};
-		timer.schedule(delayMillis);
-	}
-	
-	public void stop(){
-		if (timer != null)
-			timer.cancel();
-	}
-	
+		if (componentForTest.getOffsetHeight() > 0 || componentForTest.getOffsetWidth() > 0){
+
+		    //System.out.println("Done..");
+		    WaitingCreateToRun.this.run();
+		    cancel();
+
+		    try {
+			WaitingCreateToRun.this.finalize();
+		    } catch (Throwable e) {
+			e.printStackTrace();
+		    }
+
+		}else
+		    schedule(delayMillis);
+	    }
+	};
+	timer.schedule(delayMillis);
+    }
+
+    public void stop(){
+	if (timer != null)
+	    timer.cancel();
+    }
 }

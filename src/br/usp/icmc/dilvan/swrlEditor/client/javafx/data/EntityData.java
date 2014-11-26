@@ -19,139 +19,134 @@ public class EntityData implements Serializable {
     private Map<String, String> properties;
 
     public EntityData() {
-        this(null, null);
+	this(null, null);
     }
 
     public EntityData(String name) {
-        this(name, name);
+	this(name, name);
     }
 
     public EntityData(String name, String browserText) {
-        this(name, browserText, null);
+	this(name, browserText, null);
     }
 
     public EntityData(String name, String browserText, Collection<EntityData> types) {
-        this.name = name;
-        this.browserText = browserText;
-        this.types = types;
+	this.name = name;
+	this.browserText = browserText;
+	this.types = types;
     }
 
     public void copyValuesFrom(EntityData sourceEntityData) {
-        setName(sourceEntityData.getName());
-        setBrowserText(sourceEntityData.getBrowserText());
-        setLocalAnnotationsCount(sourceEntityData.getLocalAnnotationsCount());
-        setChildrenAnnotationsCount(sourceEntityData.getChildrenAnnotationsCount());
-        setValueType(sourceEntityData.getValueType());
-        setWatch(sourceEntityData.getWatch());
-        Collection<EntityData> sourceTypes = sourceEntityData.getTypes();
-        if (sourceTypes != null) {
-            setTypes(new ArrayList<EntityData>(sourceTypes));
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getBrowserText() {
-        return browserText;
-    }
-
-    public void setBrowserText(String browserText) {
-        this.browserText = browserText;
-    }
-
-    public Collection<EntityData> getTypes() {
-        return types;
-    }
-
-    public void setTypes(Collection<EntityData> types) {
-        this.types = types;
-    }
-
-    public ValueType getValueType() {
-        return valueType;
-    }
-
-    public void setValueType(ValueType valueType) {
-        this.valueType = valueType;
+	setName(sourceEntityData.getName());
+	setBrowserText(sourceEntityData.getBrowserText());
+	setLocalAnnotationsCount(sourceEntityData.getLocalAnnotationsCount());
+	setChildrenAnnotationsCount(sourceEntityData.getChildrenAnnotationsCount());
+	setValueType(sourceEntityData.getValueType());
+	setWatch(sourceEntityData.getWatch());
+	Collection<EntityData> sourceTypes = sourceEntityData.getTypes();
+	if (sourceTypes != null)
+	    setTypes(new ArrayList<EntityData>(sourceTypes));
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof EntityData)) {
-            return false;
-        }
-        return ((EntityData) obj).getName().equals(this.getName());
+	if (!(obj instanceof EntityData))
+	    return false;
+	return ((EntityData) obj).getName().equals(getName());
+    }
+
+    public String getBrowserText() {
+	return browserText;
+    }
+
+    public int getChildrenAnnotationsCount() {
+	return childrenAnnotationsCount;
+    }
+
+    public int getLocalAnnotationsCount() {
+	return localAnnotationsCount;
+    }
+
+    public String getName() {
+	return name;
+    }
+
+    public Map<String, String> getProperties() {
+	return properties;
+    }
+
+    public String getProperty(String prop) {
+	if (properties == null)
+	    return null;
+	return properties.get(prop);
+    }
+
+    public Collection<EntityData> getTypes() {
+	return types;
+    }
+
+    public ValueType getValueType() {
+	return valueType;
+    }
+
+    public Watch getWatch() {
+	return watch;
     }
 
     @Override
     public int hashCode() {
-        if (name != null) {
-            return name.length() * 11 + 42 + name.hashCode();
-        }
-        return 42;
+	if (name != null)
+	    return name.length() * 11 + 42 + name.hashCode();
+	return 42;
+    }
+
+    public void setBrowserText(String browserText) {
+	this.browserText = browserText;
+    }
+
+    public void setChildrenAnnotationsCount(int childrenAnnotationsCount) {
+	this.childrenAnnotationsCount = childrenAnnotationsCount;
+    }
+
+    public void setLocalAnnotationsCount(int localAnnotationsCount) {
+	this.localAnnotationsCount = localAnnotationsCount;
+    }
+
+    public void setName(String name) {
+	this.name = name;
+    }
+
+    public void setProperties(Map<String, String> properties) {
+	this.properties = properties;
+    }
+
+    public void setProperty(String prop, String value) {
+	if (properties == null)
+	    properties = new LinkedHashMap<String, String>();
+	properties.put(prop, value);
+    }
+
+    public void setTypes(Collection<EntityData> types) {
+	this.types = types;
+    }
+
+    public void setValueType(ValueType valueType) {
+	this.valueType = valueType;
+    }
+
+    public void setWatch(Watch watch) {
+	this.watch = watch;
     }
 
     @Override
     public String toString() {
-        /*
+	/*
         StringBuffer buffer = new StringBuffer();
         buffer.append(name);
         buffer.append(", browser text: ");
         buffer.append(browserText);
         return buffer.toString();
-        */
-        return browserText;
-    }
-
-    public int getLocalAnnotationsCount() {
-        return localAnnotationsCount;
-    }
-
-    public void setLocalAnnotationsCount(int localAnnotationsCount) {
-        this.localAnnotationsCount = localAnnotationsCount;
-    }
-
-    public int getChildrenAnnotationsCount() {
-        return childrenAnnotationsCount;
-    }
-
-    public void setChildrenAnnotationsCount(int childrenAnnotationsCount) {
-        this.childrenAnnotationsCount = childrenAnnotationsCount;
-    }
-
-    public Watch getWatch() {
-        return watch;
-    }
-
-    public void setWatch(Watch watch) {
-        this.watch = watch;
-    }
-
-    public Map<String, String> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(Map<String, String> properties) {
-        this.properties = properties;
-    }
-
-    public String getProperty(String prop) {
-        if (properties == null) {
-            return null;
-        }
-        return properties.get(prop);
-    }
-
-    public void setProperty(String prop, String value) {
-        if (properties == null) {
-            properties = new LinkedHashMap<String, String>();
-        }
-        properties.put(prop, value);
+	 */
+	 return browserText;
     }
 }

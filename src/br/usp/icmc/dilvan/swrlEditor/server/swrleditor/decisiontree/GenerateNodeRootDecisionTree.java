@@ -12,29 +12,29 @@ import edu.stanford.smi.protegex.owl.swrl.model.SWRLFactory;
 
 public interface GenerateNodeRootDecisionTree extends Runnable {
 
-	/**
-	 * Returns the algorithm name that the user will see
-	 * @return The name of the algorithm
-	 */
-	public String getAlgorithmName();
+    /**
+     * Returns the algorithm name that the user will see
+     * @return The name of the algorithm
+     */
+    public String getAlgorithmName();
 
-	/**
-	 * Sets the SWRLFactory. From this factory, all SWRL rules are accessible. 
-	 * This call is dependent on using Protege API 3.X.
-	 * For the OWL API, that should be changed.
-	 * @param factory the SWRL factory object for the set of rules
-	 */
-	public void setSWRLFactory(SWRLFactory factory);
-	
-	/**
-	 * Sets the RuleSet. 
-	 * @param rules the RuleSet object
-	 */
-	public void setRuleSet(RuleSet rules);
+    /**
+     * Gets the Decision Tree root node. If there is no tree yet
+     * (method Runnable.run() hasn't been called yet), it returns null.
+     */
+    public NodeDecisionTree getRootNode();
 
-	/**
-	 * Gets the Decision Tree root node. If there is no tree yet 
-	 * (method Runnable.run() hasn't been called yet), it returns null.
-	 */
-	public NodeDecisionTree getRootNode();		
+    /**
+     * Sets the RuleSet.
+     * @param rules the RuleSet object
+     */
+    public void setRuleSet(RuleSet rules);
+
+    /**
+     * Sets the SWRLFactory. From this factory, all SWRL rules are accessible.
+     * This call is dependent on using Protege API 3.X.
+     * For the OWL API, that should be changed.
+     * @param factory the SWRL factory object for the set of rules
+     */
+    public void setSWRLFactory(SWRLFactory factory);
 }

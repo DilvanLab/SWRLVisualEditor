@@ -12,17 +12,17 @@ public class ConditionSuggestion implements Serializable {
 
     public ConditionSuggestion() {}
 
-    public List<EntityData> getSuggestions() {return suggestions;}
-    
-    public void setSuggestions(List<EntityData> suggestions) {
-        this.suggestions = suggestions;
-    }
-    
     public String getMessage() {return message;}
-    
+
+    public List<EntityData> getSuggestions() {return suggestions;}
+
+    public boolean isValid() {return isValid;}
+
     public void setMessage(String message) {this.message = message;}
 
+    public void setSuggestions(List<EntityData> suggestions) {
+	this.suggestions = suggestions;
+    }
+
     public void setValid(boolean isValid) {this.isValid = isValid;}
-    
-    public boolean isValid() {return isValid;}
 }

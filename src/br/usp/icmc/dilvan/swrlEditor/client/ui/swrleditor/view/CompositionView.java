@@ -14,33 +14,32 @@ import com.google.gwt.user.client.ui.IsWidget;
  *
  * @author Joao Paulo Orlando
  */
-public interface CompositionView extends IsWidget
-{
-	
-	void setPresenter(Presenter presenter);
-	void setWritePermission(boolean permission);
-	void setTypeView(TYPE_VIEW typeView);
-	
-	void setBuiltins(List<String> builtins);
-	void setRule(Rule rule);
-	void setNewRule(Rule rule);
-	void setSelectedOntologyItem(TYPE_ATOM typeAtom, String predicate, boolean isAntecedent);
-	void setErrosAndWarnings(List<String> listErros, List<String> listWarnings);
+public interface CompositionView extends IsWidget {
 
-	void showSimilarRules(String ruleName, List<Rule> rules);
-	void showSimilarTerms(List<Atom> listTerms);
-	
-	void addAtom(Atom atom, boolean isAntecedent);
-	void setConfiguration(Map<String, Object> config);
-	
-	void setSelfCompletion(List<String> suggest);
-	
-	public interface Presenter
-	{
-		void setRuleName(String text);
-		void saveRule();
-		
-		void getSimilarRules();
-		void goToVisualization();
-	}
+    public interface Presenter {
+	void getSimilarRules();
+	void goToVisualization();
+
+	void saveRule();
+	void setRuleName(String text);
+    }
+
+    void addAtom(Atom atom, boolean isAntecedent);
+    void setBuiltins(List<String> builtins);
+
+    void setConfiguration(Map<String, Object> config);
+    void setErrosAndWarnings(List<String> listErros, List<String> listWarnings);
+    void setNewRule(Rule rule);
+    void setPresenter(Presenter presenter);
+    void setRule(Rule rule);
+
+    void setSelectedOntologyItem(TYPE_ATOM typeAtom, String predicate, boolean isAntecedent);
+    void setSelfCompletion(List<String> suggest);
+
+    void setTypeView(TYPE_VIEW typeView);
+    void setWritePermission(boolean permission);
+
+    void showSimilarRules(String ruleName, List<Rule> rules);
+
+    void showSimilarTerms(List<Atom> listTerms);
 }
